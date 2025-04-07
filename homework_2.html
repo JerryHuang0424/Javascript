@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function checkIdnficationID() {
+        let id = prompt("请输入身份证号码：");
+        if (!id) {
+            alert("身份证号码不能为空！");
+            return;
+        }
+
+        // 1. 检查长度是否为18位
+        if (id.length !== 18) {
+            alert("身份证号码位数不对！");
+            return;
+        }
+
+        // 2. 检查前17位是否为数字
+        for (let i = 0; i < 17; i++) {
+            if (id[i] < '0' || id[i] > '9') {
+                alert("身份证号码前17位必须是纯数字！");
+                return;
+            }
+        }
+
+        // 3. 检查最后一位是否为数字或字母X
+        let lastChar = id[17];
+        if (!( Number.isInteger(+lastChar) || lastChar === 'X' || lastChar === 'x')) {
+            alert("身份证号码最后一位必须是数字或字母X！");
+            return;
+        }
+
+        // 4. 验证校验码
+        let coefficients = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; // 系数
+        let checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']; // 校验码对应表
+
+        let sum = 0;
+        for (let i = 0; i < 17; i++) {
+            sum += parseInt(id[i]) * coefficients[i];
+        }
+
+        let remainder = sum % 11;
+        let expectedCheckCode = checkCodes[remainder];
+
+        if (lastChar.toUpperCase() !== expectedCheckCode) {
+            alert(`身份证号码不合法，校验码应为${expectedCheckCode}！`);
+            return;
+        }
+
+        // 5. 验证中间的生日是否为合法日期
+        let birthDate = id.substring(6, 14); // 提取生日部分
+        let year = parseInt(birthDate.substring(0, 4));
+        let month = parseInt(birthDate.substring(4, 6));
+        let day = parseInt(birthDate.substring(6, 8));
+
+        let date = new Date(year, month - 1, day);
+        if (
+            date.getFullYear() !== year ||
+            date.getMonth() + 1 !== month ||
+            date.getDate() !== day
+        ) {
+            alert("身份证号码中的生日日期不合法！");
+            return;
+        }
+
+        alert("身份证号码合法！");
+    }
+</script>
+<body>
+    
+</body>
+</html>
