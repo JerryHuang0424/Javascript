@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+        // // 一些简单的常见函数及其作用
+        // // 1. toString() 方法
+        // 25..toString(); // '25'
+        // "hello".toString(); // 'hello'
+
+        // //toFixed() 方法
+        // a = 25.123456;
+        // a.toFixed(2); // '25.12'
+        // // toFixed() 方法返回一个字符串，该字符串以指定的小数位数表示该数字。
+        // console.log(0.1 + 0.2 === 0.3); // false, 0.1 + 0.2 = 0.30000000000000004，这个是JavaScript他特殊知识点
+        // console.log((0.1 + 0.2).toFixed(1) === 0.3); // true
+
+        // //把string转换成number
+        // //最简单的方法
+        // +"25"; // 25
+        // ""+ 1.23; // '1.23'
+        // //Number()方法
+        // Number("25"); // 25, Number()是一个构造器，调用了Number类
+
+        // //parseInt()方法
+        // parseInt("25"); // 25
+        // parseInt("25.123"); // 25
+        // parseInt("25.123abc"); // 25
+        // parseInt("abc25.123abc"); // NaN,开始身为一个符号的无法转换
+        // parseInt("25", 10); // 25, 10表示进制
+        // parseInt("25", 16); // 37, 16进制的25是37
+        // parseInt("0x25"); // 37, 0x表示16进制
+
+        // //Math
+        // console.log(Math.PI); // 3.141592653589793
+        // console.log(Math.E); // e = 2.718281828459045
+        // console.log(Math.round(25.123)); // 25, 四舍五入
+        // console.log(Math.abs(-25)); // 25, 绝对值
+        // console.log(Math.floor(25.123)); // 25, 向下取整
+        // console.log(Math.ceil(25.123)); // 26, 向上取整
+        // console.log(Math.trunc(25.123)); // 25, 去掉小数部分
+        // //以上的取整函数在负数上的表现是不一样的
+        // console.log(Math.floor(-25.123)); // -26
+        // console.log(Math.ceil(-25.123)); // -25
+        // console.log(Math.trunc(-25.123)); // -25
+
+        // console.log(Math.pow(2, 3)); // 8, 2的3次方
+        // console.log(Math.max(1, 2, 3, 4, 5)); // 5, 最大值
+        // console.log(Math.min(1, 2, 3, 4, 5)); // 1, 最小值
+
+        // //random()方法
+        // console.log(Math.random()); // 0.12345678901234567, 0-1之间的随机数
+        // console.log(Math.random() * 100); // 1.2345678901234567, 0-100之间的随机数
+        // console.log(Math.floor(Math.random() * 100)); // 1-100之间的随机整数,使用round，ceil等去函数也可以
+
+        // //生成一个30到40之间的整数
+        // console.log(Math.floor(Math.random() * 11) + 30); // 30-40之间的随机整数
+
+
+        // //string
+        // //表示字符串的方法
+        // //1. 使用单引号
+        // 'hello';
+        // //2. 使用双引号
+        // "hello";
+        // //3. 使用反引号
+        // `hello`;
+        // //反引号可以用来表示多行字符串，也可以添加公式
+        // `1 + 1 = ${1 + 1}`; // 1 + 1 = 2
+        // //反引号也可以换行
+        // `hello
+        // world`;
+
+        // //特殊字符
+        // //1. \n 换行
+        // console.log("hello\nworld"); //hello 和 world不在同一行，中间有一个换行
+        // //如何表示：Tom`s book
+        // console.log("Tom`s book"); // Tom`s book
+        // console.log('Tom\s book'); 
+        // //sting 是不可改变的
+        // let a = "hello";
+        // a[0] = "G";
+        // console.log(a); // hello，不会因为a[0] = "G"而改变a的值
+        // //upperCase()方法
+        // console.log("hello".toUpperCase()); // HELLO
+        // //lowerCase()方法
+        // console.log("HELLO".toLowerCase()); // hello
+        // //indexOf()方法
+        // console.log("hello".indexOf("l")); // 2, l在hello中的位置
+        // console.log("hello".indexOf("a")); // -1, a不在hello中
+        // console.log("hello".indexOf("l", 3)); // 3, 从第三个位置开始找l
+        // //endsWith()方法
+        // console.log("hello".endsWith("o")); // true, hello以o结尾
+        // console.log("hello".endsWith("l")); // false, hello不以l结尾
+        // //startsWith()方法
+        // console.log("hello".startsWith("h")); // true, hello以h开头
+        // console.log("hello".startsWith("e")); // false, hello不以e开头
+        // //split, join
+        // const str = 'The quick brown fox jumps over the lazy dog.';
+        // const words = str.split(' ');
+        // console.log(words[3]); // fox
+        // const newStr = words.join('，'); //join的用法是把数组中的元素用指定的字符连接起来
+        // console.log(newStr); // The，quick，brown，fox，jumps，over，the，lazy，dog.
+        // //使用split查看一个句子的单词数量，split的作用是把字符串分割成数组
+        // console.log(words.length); // 9
+
+        // //substring()方法
+        // console.log("hello".substring(1, 3)); // el, 从第一个位置开始到第三个位置结束,包含第一个位置，不包含第三个位置
+        // console.log("hello".substring(3)); // lo, 从第三个位置开始到结束
+        // //substr()方法
+        // console.log("hello".substr(1, 3)); // ell, 从第一个位置开始，取三个字符
+        // //slice()方法
+        // console.log("hello".slice(1, 3)); // el, 从第一个位置开始到第三个位置结束,包含第一个位置，不包含第三个位置
+        // console.log("hello".slice(-3,-1)); // ll, 从倒数第三个位置开始到倒数第一个位置结束，包含倒数第三个位置，不包含倒数第一个位置
+        // //replace()方法
+        // console.log("hello".replace("l", "a")); // healo, 把第一个l替换成a
+
+        // //padStart()方法,padEnd()方法
+        // console.log("hello".padStart(10, "a")); // aaaaaahello, 用a填充到10个字符
+        // console.log("hello".padEnd(10, "a")); // helloaaaaa, 用a填充到10个字符
+
+        function checkStudentId(){
+            id = +prompt("Please enter your student ID");
+            id_num = parseInt(id);
+            if (isNaN(id_num)){
+                console.log("ID is invalid");
+                return;
+            }
+            length = id_num.toString().length;
+            if (length !== 12){
+                console.log("ID is invalid");
+                return;
+            }
+            firstNumber = id_num.substring(0, 4);
+            if(firstNumber !== "2022"){
+                console.log("ID is invalid");
+                return;
+            }
+            return true;
+        }
+
+    function generateRandomColor(){
+        // first = Math.floor(Math.random() * 256);
+        // second = Math.floor(Math.random() * 256);
+        // third = Math.floor(Math.random() * 256);
+        // first_16 = first.toString(16);
+        // second_16 = second.toString(16);
+        // third_16 = third.toString(16);
+        // return "#" + first_16 + second_16 + third_16;
+
+        //更简洁的方法
+        number = Math.random().toString(16);
+        color = number.substring(number.length - 6, number.length);
+        return "#" + color;
+    }
+
+    color = generateRandomColor();
+    console.log(color);
+
+
+    </script>
+<body>
+</body>
+</html>

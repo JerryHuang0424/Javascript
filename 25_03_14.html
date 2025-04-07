@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <scrip>
+        <!-- function sum(a,b){
+            return (a || 0 ) + (b || 0);
+        } -->
+
+        <!-- 箭头函数 -->
+        <!-- let sum = (a,b,c) => a + b + c; -->
+
+
+        <!-- let fun = (add) => {
+            alert(add)
+        } -->
+        
+        <!-- var test = true
+        var test = true
+        alert(test)
+
+        let test = true
+        let test = true
+        alert(test) -->
+
+        <!-- 认识let和var两个变量的区别 -->
+        <!-- var：具有函数作用域，即在函数内部声明的变量在整个函数内都可以访问。
+let：具有块作用域，即在 {} 内声明的变量只能在该块内访问。 -->
+
+
+        <!-- closure,这个知识点很重要！！！ -->
+         let add = function(){
+            let counter = 0;
+            return function(){
+               console.log(++counter);
+            }
+         };
+
+         add();
+         add();
+         add();
+
+
+
+         <!--IIFE(Immediately Invoked Function Expression) -->
+
+        (function(){
+            alert("Hello World");
+            } 
+        )();
+
+        <!-- IIFE与箭头函数的结合
+        (() => {
+            alert("Hello World");
+        })();
+        -->
+
+        <!-- build-in function :eval 
+             eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。
+         -->
+        
+        eval('1+2');
+
+        <!-- encodeURI function & decodeURI function
+            encodeURI() 函数可把字符串作为 URI 进行编码。
+
+            encodeURI("中") >>> "%E4%B8%AD"
+            decodeURI("%E4%B8%AD") >>> "中"
+
+         --> 
+        
+
+
+        
+
+      
+    </scrip>
+<body>
+    
+</body>
+</html>

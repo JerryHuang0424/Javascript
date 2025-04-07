@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+
+        // 计时器
+        // let i = 1;
+        // let timer = setInterval(()=>{
+        //     i = i + 1;
+        //     document.writeln(i);
+        // },1000);
+        
+        // setTimeout(()=>{
+        //     clearInterval(timer);
+        // },10000);
+
+
+        // let name = "Jerry Huang";
+        // let p = {name, "age": 20};
+
+        // alert(p.name);
+
+        // for(let k in p){
+        //     alert(k);
+        // }
+
+        // for(let k of p){
+        //     alert(k);
+        
+        //1. for...in
+        // 作用: 用于遍历对象的可枚举属性（包括对象本身的属性和从原型链继承的属性）。
+        // 适用场景: 遍历对象的键（属性名）。
+        // 返回值: 每次迭代返回的是属性名（字符串）。
+        // const obj = { a: 1, b: 2, c: 3 };
+
+        // for (let key in obj) {
+        //     console.log(key); // 输出: a, b, c
+        // }
+        // 2. for...of
+        // 作用: 用于遍历可迭代对象（如数组、字符串、Map、Set 等）。
+        // 适用场景: 遍历集合中的值。
+        // 返回值: 每次迭代返回的是集合中的值。
+        //const arr = [10, 20, 30];
+
+        // for (let value of arr) {
+        //     console.log(value); // 输出: 10, 20, 30
+        // }
+
+
+        // let student = {
+        //     name: "Jerry Huang",
+        //     age: 20
+        // };
+
+        // student.say = ()=>{
+        //     alert("Hello World");
+        // }
+
+        // student.say();
+
+        // 方法的改写
+        // let student = {
+        //     name: "Jerry Huang",
+        //     age: 20,
+        //     say : function(){
+        //         alert("Hello World");
+        //     }
+        // };
+
+        // student.say();
+
+        // student.say = function(){
+        //     alert("Hello WCNDM");
+        // };
+
+        // student.say();
+
+
+        //this 关键字的作用
+        // let studnet = {
+        //     name: "Jerry Huang",
+        //     age: 20,
+        //     say: function(){
+        //         alert(this.name);
+        //     }
+        // };
+
+        // studnet.say();
+
+        //chain call
+        // let student = {
+        //     name: "Jerry Huang",
+        //     age: 20,
+        //     say: function(){
+        //         alert(this.name);
+        //     },
+        //     grow: function(){
+        //         this.age += 1;
+        //         return this;
+        //     }
+        // };
+
+        // student.grow().grow().grow().say();
+
+        //this 关键字的作用
+        // let student = {
+        //     name: "Jerry Huang",
+        //     age: 20
+        // };
+
+        // let newStudent = {name: "Ziheng"}
+
+        // function say(){
+        //     alert(this.name);
+        // }
+
+        // student.say()
+        // newStudent.say()
+
+        //构造函数（Constractro)
+        // function Student(name = "Alice", age = 20){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.learn = ()=>{
+        //         alert("learn");
+        //     }
+
+        // }
+
+        // let Student1 = new Student();
+        // let Student2 = new Student("Jerry Huang", 20);
+        // alert(Student1.name);
+        // alert(Student2.name);
+
+        // Student2 = undefined
+
+        // alert(Student2?.name); 
+        //?. 用于判断对象是否为空,如果为空，就返回undefined，没有这个？就会报错
+
+
+
+
+    </script>
+<body>
+
+    
+</body>
+</html>
+

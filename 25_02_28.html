@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word check</title>
+    <script>
+        let num = +prompt("请输入一个字符");
+        if (inputChar === "0") {
+            result.textContent = "该字符为0";
+        }else if(inputChar%2 ==0 && inputChar > 0) {
+            result.textContent = "该字符为正偶数";
+        }else if(inputChar%2 ==0 && inputChar < 0) {
+            result.textContent = "该字符为负偶数";
+        }else if(inputChar%2 !=0 && inputChar > 0) {
+            result.textContent = "该字符为正奇数";
+        }else if(inputChar%2 !=0 && inputChar < 0) {    
+            result.textContent = "该字符为负奇数";
+        }else {
+            result.textContent = "该字符为非数字";
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闰年检查器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>闰年检查器</h1>
+        <button class="button" onclick="checkYear()">检查年份</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+
+        function checkYear() {
+            let year = prompt("请输入一个年份（1900-2500）：");
+            year = parseInt(year);
+
+            if (year >= 1900 && year <= 2500) {
+                if (isLeapYear(year)) {
+                    document.getElementById("result").innerText = `${year}年是闰年。`;
+                } else {
+                    document.getElementById("result").innerText = `${year}年不是闰年。`;
+                }
+            } else {
+                alert("请输入1900年到2500年之间的年份。");
+            }
+        }
+    </script>
+</body>
+</html>

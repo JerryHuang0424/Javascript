@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+
+        function checkYear(inputyear, month) {
+            let year = prompt("请输入一个年份（1900-2500）：");
+            year = parseInt(year);
+
+            if (year >= 1900 && year <= 2500) {
+                month = returnMonthDay(month, isLeapYear(year))
+                console.log(month)
+            } else {
+                alert("请输入1900年到2500年之间的年份。");
+            }
+        }
+
+        function returnMonthDay(month,isLeapYear){
+            switch(month){
+                case 1: case 3: case 5: case 7: case 8:case 10 : case 12 : 
+                    return 31;
+                case 4: case 6: case 9: case 11:
+                    return 30;
+                case 2 : return isLeapYear ? 29: 28;
+            }
+        }
+
+        checkYear(2004,2)
+    </script>
+<body>
+    
+</body>
+</html>

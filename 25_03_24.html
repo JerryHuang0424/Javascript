@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+        // // 类的继承
+        // class Animal {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+
+        //     speak() {
+        //         console.log(this.name + ' makes a noise.');
+        //     }
+        // }
+
+        // //第一种继承方式
+        // class ranbbit extends Animal {
+        //     Jump() {
+        //         console.log(this.name + ' is jumping .');
+        //     }
+        // }
+
+        // //第二种继承方式
+        // class rabbit{
+        //     constructor(name){
+        //         this.name = name;
+        //     }
+
+        //     Jump() {
+        //         console.log(this.name + ' is jumping .');
+        //     }
+        // }
+        // rabbit.__proto__ = Animal;
+
+        // //第三种继承方式
+        // let rabbit = {
+        //     __proto__: Animal,
+        //     Jump() {
+        //         console.log(this.name + ' is jumping .');
+        //     }
+        // }
+
+
+        // //第四种继承方式
+        // function ranbbit(name){
+        //     this.name = name;
+        // }
+
+        // ranbbit.prototype = new Animal();
+        // ranbbit.prototype.Jump = function(){
+        //     console.log(this.name + ' is jumping .');
+        // }
+
+
+
+        // let rabbit = new ranbbit('White Rabbit');
+        // rabbit.Jump();
+        // rabbit.speak();
+
+
+        // //重写和重载
+        // //重载：方法名相同，参数列表不同，发生在同一个类中。
+        // //重写：方法名和参数列表相同，发生在子类与父类之间
+
+        // //super关键字，用来调用父类中的构造函数
+        // class Animal {
+        //     constructor(name) {
+        //      this.name = name;
+        //     }
+        // }
+
+        // class Dog extends Animal {
+        //     constructor(name, breed) {
+        //         super(name); // 调用父类的构造函数
+        //         this.breed = breed; // 初始化子类的属性
+        //     }
+        // }
+
+        // const dog = new Dog("Buddy", "Golden Retriever");
+        // console.log(dog.name);  // 输出: Buddy
+        // console.log(dog.breed); // 输出: Golden Retriever
+
+        //静态方法
+        // class MathUtils {
+        //     static add(a, b) {
+        //         return a + b;
+        //     }
+        // }
+
+        // // 调用静态方法
+        // console.log(MathUtils.add(5, 10)); // 输出: 15
+
+        // // 静态方法不能通过实例调用
+        // const math = new MathUtils();
+        // console.log(math.add(5, 10)); // 报错: TypeError: math.add is not a function
+
+
+    </script>
+<body>
+
+    <!-- JS特殊知识点：模块化编程 -->
+    <script type="module">
+        import { sayHi } from './module1.js';
+        sayHi("Jerry");
+    </script>
+
+     <script>
+
+     </script>  
+</body>
+</html>

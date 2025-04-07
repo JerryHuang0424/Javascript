@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <script>
+        //get year
+        function getYear(){
+            let year = getValue(1900,2500,"请输入一个年份（1900-2500）：")
+            return year;
+        }
+
+        function getMonth(){
+            let month = getValue(1, 12, "请输入一个月份（1-12）：");
+            return month;
+        }
+
+        function getValue(flood, ceil, title){
+            let value = +prompt(title);
+            while(value < flood || value > ceil){
+                value = +prompt("超出范围，重新输入");
+            }
+            return value;
+        }
+        function leap(year){
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+
+        function getMaxDay(year, month){
+            let days = 0;
+            switch(month){
+                case 1: case 3: case 5: case 7: case 8:case 10 : case 12 : 
+                    days = 31;
+                    break;
+                case 4: case 6: case 9: case 11:
+                    days = 30;
+                    break;
+                case 2 : days = leap(year) ? 29: 28;
+            }
+            return days;
+        }
+
+        function getMonthDaySimple(year, month){
+            let day = [31,28 + leap(year),31,30,31,30,31,31,30,31,30,31];
+
+            if (month < 1 || month > 12){
+                return "Invalid month";
+            }else{
+                return day[month - 1];
+            }
+        }
+
+        function main(){
+            let year = getYear();
+            let month = getMonth();
+            let days = getMaxDay(year, month);
+            console.log(days);
+            alert(`The month ${month} in year ${year} has ${days} days`);
+        }
+
+        main();
+
+    </script>
+<body>
+    
+</body>
+</html>
