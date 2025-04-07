@@ -3,74 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>身份证验证</title>
 </head>
-<script>
-    function checkIdnficationID() {
-        let id = prompt("请输入身份证号码：");
-        if (!id) {
-            alert("身份证号码不能为空！");
-            return;
-        }
+<body>
+    <script>
 
-        // 1. 检查长度是否为18位
-        if (id.length !== 18) {
-            alert("身份证号码位数不对！");
-            return;
-        }
-
-        // 2. 检查前17位是否为数字
-        for (let i = 0; i < 17; i++) {
-            if (id[i] < '0' || id[i] > '9') {
-                alert("身份证号码前17位必须是纯数字！");
+function checkIdWithRegex() {
+            const id = prompt("请输入身份证号码：");
+            if (!id) {
+                alert("身份证号码不能为空！");
                 return;
             }
+
+            // 正则表达式验证格式
+            const regex = /^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$/;
+            if (!regex.test(id)) {
+                alert("身份证号码格式错误！");
+                return;
+            }
+
+            // 校验码验证（与之前相同）
+            const coefficients = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+            const checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+            
+            let sum = 0;
+            for (let i = 0; i < 17; i++) {
+                sum += parseInt(id[i]) * coefficients[i];
+            }
+            
+            const remainder = sum % 11;
+            const expectedCheckCode = checkCodes[remainder];
+            
+            if (id[17].toUpperCase() !== expectedCheckCode) {
+                alert("身份证校验码不合法！");
+                return;
+            }
+
+            // 验证生日日期（从正则中提取的日期必然合法，无需再检查）
+            alert("身份证号码合法！");
         }
 
-        // 3. 检查最后一位是否为数字或字母X
-        let lastChar = id[17];
-        if (!( Number.isInteger(+lastChar) || lastChar === 'X' || lastChar === 'x')) {
-            alert("身份证号码最后一位必须是数字或字母X！");
-            return;
+        function checkIdnficationID() {
+            let id = prompt("请输入身份证号码：");
+            if (!id) {
+                alert("身份证号码不能为空！");
+                return;
+            }
+
+            // 1. 检查长度是否为18位
+            if (id.length !== 18) {
+                alert("身份证号码位数不对！");
+                return;
+            }
+
+            // 2. 检查前17位是否为数字
+            for (let i = 0; i < 17; i++) {
+                if (id[i] < '0' || id[i] > '9') {
+                    alert("身份证号码前17位必须是纯数字！");
+                    return;
+                }
+            }
+
+            // 3. 检查最后一位是否为数字或字母X
+            let lastChar = id[17];
+            if (!( (lastChar >= '0' && lastChar <= '9') || lastChar.toUpperCase() === 'X' )) {
+                alert("身份证号码最后一位必须是数字或字母X！");
+                return;
+            }
+
+            // 4. 验证校验码
+            let coefficients = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; // 系数
+            let checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']; // 校验码对应表
+
+            let sum = 0;
+            for (let i = 0; i < 17; i++) {
+                sum += parseInt(id[i]) * coefficients[i];
+            }
+
+            let remainder = sum % 11;
+            let expectedCheckCode = checkCodes[remainder];
+
+            if (lastChar.toUpperCase() !== expectedCheckCode) {
+                alert("身份证号码校验码不合法！");
+                return;
+            }
+
+            // 5. 验证生日日期
+            let year = parseInt(id.substring(6, 10));
+            let month = parseInt(id.substring(10, 12));
+            let day = parseInt(id.substring(12, 14));
+
+            if (!isValidDate(year, month, day)) {
+                alert("身份证号码中的生日日期不合法！");
+                return;
+            }
+
+            alert("身份证号码合法！");
         }
 
-        // 4. 验证校验码
-        let coefficients = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; // 系数
-        let checkCodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']; // 校验码对应表
+        function isValidDate(year, month, day) {
+            // 检查年份范围（示例：1900-当前年份）
+            const currentYear = new Date().getFullYear();
+            if (year < 1900 || year > currentYear) {
+                return false;
+            }
 
-        let sum = 0;
-        for (let i = 0; i < 17; i++) {
-            sum += parseInt(id[i]) * coefficients[i];
+            // 检查月份
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            // 检查日期
+            const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            // 闰年2月29天
+            if (month === 2 && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
+                daysInMonth[1] = 29;
+            }
+            return day > 0 && day <= daysInMonth[month - 1];
         }
+    </script>
 
-        let remainder = sum % 11;
-        let expectedCheckCode = checkCodes[remainder];
+    <!-- 添加一个按钮触发验证 -->
+    <button onclick="checkIdnficationID()">验证身份证</button>
+    <button onclick="checkIdWithRegex()">验证身份证（正则）</button>
 
-        if (lastChar.toUpperCase() !== expectedCheckCode) {
-            alert(`身份证号码不合法，校验码应为${expectedCheckCode}！`);
-            return;
-        }
-
-        // 5. 验证中间的生日是否为合法日期
-        let birthDate = id.substring(6, 14); // 提取生日部分
-        let year = parseInt(birthDate.substring(0, 4));
-        let month = parseInt(birthDate.substring(4, 6));
-        let day = parseInt(birthDate.substring(6, 8));
-
-        let date = new Date(year, month - 1, day);
-        if (
-            date.getFullYear() !== year ||
-            date.getMonth() + 1 !== month ||
-            date.getDate() !== day
-        ) {
-            alert("身份证号码中的生日日期不合法！");
-            return;
-        }
-
-        alert("身份证号码合法！");
-    }
-</script>
-<body>
-    
 </body>
 </html>
